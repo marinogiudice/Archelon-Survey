@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".screens.morningsurvey.StartNewSurveyFragment">
+        tools:context=".screens.morningsurvey.MorningSurveyFragment1">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -16,12 +16,12 @@
             android:layout_margin="40sp">
 
             <TextView
-                android:id="@+id/morning_survey_title"
+                android:id="@+id/morning_survey_1_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
                 android:layout_weight="1"
-                android:text="@string/morning_survey_title"
+                android:text="@string/morning_survey_1_title"
                 android:textAlignment="center"
                 android:textSize="@dimen/morning_survey_title_text" />
         </LinearLayout>
@@ -70,28 +70,22 @@
 
 
         <LinearLayout
-            android:layout_width="153dp"
+            android:layout_width="wrap_content"
             android:layout_height="41dp"
             android:layout_gravity="left"
             android:layout_marginLeft="30sp"
             android:layout_marginTop="20sp"
             android:orientation="horizontal">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/start_new_survey_fab"
-                android:layout_width="33dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:text="@string/start_new_survey_button_fab"
+                app:fabSize="normal"
                 app:srcCompat="@drawable/ic_add_black_24dp" />
 
-            <TextView
-                android:id="@+id/start_fab_desc_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="10sp"
-                android:layout_weight="1"
-                android:text="@string/start_new_survey_button_fab" />
         </LinearLayout>
 
         <LinearLayout
@@ -102,21 +96,14 @@
             android:layout_marginTop="20sp"
             android:orientation="horizontal">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/previous_fab"
-                android:layout_width="33dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:text="@string/previous_fab"
                 app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
-            <TextView
-                android:id="@+id/previous_fab_desc_text"
-                android:layout_width="71dp"
-                android:layout_height="37dp"
-                android:layout_marginLeft="10sp"
-                android:layout_marginTop="10sp"
-                android:layout_weight="1"
-                android:text="@string/previous_fab" />
         </LinearLayout>
 
 
