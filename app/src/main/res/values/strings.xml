@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Archelon</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_button">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="under_logo">Τhe Sea Turtle Protection Society of Greece</string>
+    <string name="new_survey_btn">Start New Survey</string>
+    <string name="nest_check_btn">Nest Check</string>
+    <string name="emergency_relocation_btn">Emergency Relocation</string>
+    <string name="start_excavation_btn">Start Excavation</string>
+    <string name="morning_survey_title">Morning Survey</string>
+    <string name="date_hint">Date</string>
+    <string name="time_hint">Time</string>
+    <string name="beach_hint">Beach</string>
+    <string name="beach_sector_hint">Beach Sector</string>
+    <string name="previous_fab">Previous</string>
+    <string name="start_new_survey_button_fab">Start New Survey</string>
+    <string name="main_frag_title">Main Menu</string>
 </resources>

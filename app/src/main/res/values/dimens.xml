@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size_under_logo_text">16sp</dimen>
+    <dimen name="morning_survey_title_text">20sp</dimen>
+    <dimen name="main_frag_title_text">20sp</dimen>
+</resources>
