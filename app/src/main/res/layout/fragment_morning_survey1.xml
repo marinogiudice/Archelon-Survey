@@ -97,7 +97,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/previous_fab"
+                android:id="@+id/previous_fab_ms1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:clickable="true"
