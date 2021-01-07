@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".screens.morningsurvey.MorningSurveyFragment2">
 
@@ -15,6 +14,7 @@
             android:id="@+id/morning_survey_2_observers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="40sp">
 
             <TextView
@@ -31,6 +31,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <EditText
@@ -54,6 +55,7 @@
             android:id="@+id/morning_survey_2_weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_margin="40sp">
 
             <TextView
@@ -66,9 +68,11 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/morning_survey_title_text" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
             <EditText
@@ -99,34 +103,32 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="50sp"
             android:orientation="horizontal">
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/previous_fab_ms2"
+            <Button
+                android:id="@+id/ms2_previous_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:text="@string/previous_fab" />
+                android:layout_margin="10sp"
+                android:text="@string/previous_btn" />
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/cancel_survey_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:src="@drawable/ic_cancel_black_24dp"
-                android:text="@string/cancel_survey_fab" />
-
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/next_fab_ms2"
+            <Button
+                android:id="@+id/ms2_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/ic_arrow_forward_black_24dp"
-                android:text="@string/next_fab" />
+                android:layout_margin="10sp"
+                android:text="@string/cancel_survey_btn" />
+
+            <Button
+                android:id="@+id/ms2_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:text="@string/next_btn" />
         </LinearLayout>
+
 
 
     </LinearLayout>

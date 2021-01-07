@@ -16,15 +16,19 @@
     <string name="time_hint">Time</string>
     <string name="beach_hint">Beach</string>
     <string name="beach_sector_hint">Beach Sector</string>
-    <string name="start_new_survey_button_fab">Start New Survey</string>
-    <string name="previous_fab">Previous</string>
-    <string name="next_fab">Next</string>
-    <string name="cancel_survey_fab">Cancel</string>
+    <string name="start_new_survey_button_btn">Start New Survey</string>
+    <string name="previous_btn">Previous</string>
+    <string name="next_btn">Next</string>
+    <string name="cancel_survey_btn">Cancel</string>
     <string name="main_frag_title">Main Menu</string>
     <string name="obs_leader_hint">MS Leader</string>
     <string name="second_obs_hint">Second Observer</string>
     <string name="weather_sky_hint">Sky</string>
     <string name="weather_precipitation_hint">Precipitation</string>
     <string name="weather_wind_intensity_hint">Wind Intensity</string>
+    <string name="end_survey_btn">End Survey</string>
+    <string name="end_survey_top">Submit Survey</string>
+
+
 
 </resources>
