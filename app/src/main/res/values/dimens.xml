@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Defines Font Sizes of the strings of name name used in the app-->
 <resources>
     <dimen name="text_size_under_logo_text">16sp</dimen>
     <dimen name="morning_survey_title_text">20sp</dimen>

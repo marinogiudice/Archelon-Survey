@@ -14,9 +14,20 @@ import com.android.archelon.databinding.FragmentMainBinding
 import com.android.archelon.screens.morningsurvey.MorningSurveyFragment1
 
 /**
- * A simple [Fragment] subclass.
+ * The MainMenuFragment class.
+ * Displays The screen "Main Menu", Is the first screen after the user log in.
+ * Uses DataBinding
+ * Extends the Fragment Class
  */
+
 class MainFragment : Fragment() {
+
+    /**
+     * The function onCreateView assigns the inflates binding layout, generated from
+     * the layout xml file fragment_main to the val binding.
+     * Returns binding.root which contains the inflated View.
+     *
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +35,14 @@ class MainFragment : Fragment() {
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentMainBinding>(inflater,
             R.layout.fragment_main,container,false)
+
+        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+
+            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
+            of the supportFragmentManager. The transaction replaces the current fragment with MorningSurveyFragment1, in
+            fragment_container_view, of MainActivity walking the User to the first screen of "Morning Survey".
+            The transaction is added to the BackStack. */
+
         binding.startSurveyButton.setOnClickListener {
             activity!!.supportFragmentManager.commit {
                 setReorderingAllowed(true)

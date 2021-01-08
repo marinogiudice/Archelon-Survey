@@ -15,9 +15,21 @@ import com.android.archelon.databinding.FragmentMorningSurvey3Binding
 import com.android.archelon.screens.mainmenu.MainFragment
 
 /**
- * A simple [Fragment] subclass.
+ * The MorningSurveyFragment3 class.
+ * Displays the screen "Submit Survey" where the User submits the data of the Survey.
+ * Uses DataBinding
+ * Extends the Fragment class
+ *
  */
+
 class MorningSurveyFragment3 : Fragment() {
+
+    /**
+     * The function onCreateView assigns the inflates binding layout, generated from
+     * the layout xml file fragment_morning_survey3 to the val binding.
+     * Returns binding.root which contains the inflated View.
+     *
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +39,20 @@ class MorningSurveyFragment3 : Fragment() {
             inflater,
             R.layout.fragment_morning_survey3, container, false
         )
+
+        /*  The following code is used to handle the navigation between fragments using the support fragment manager
+
+            an onClick listener is set on the previous and the cancel button.
+            The listener of the previous button calls the popBackStack method of the supportFragmentManager to
+            walk the user to the previous screen.  */
+
         binding.ms3PreviousButton.setOnClickListener {
             activity!!.supportFragmentManager.popBackStack()
         }
+
+        /*  The listener of the cancel button calls the popBackStack method of the support screen to empty the backStack and
+            create a new transaction to walk the User back to the MainMenu screen. */
+
         binding.ms3CancelButton.setOnClickListener {
             activity!!.supportFragmentManager.popBackStack(
                 "MainMenu",

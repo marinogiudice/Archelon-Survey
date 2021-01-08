@@ -14,7 +14,10 @@ import com.android.archelon.databinding.FragmentLoginBinding
 import com.android.archelon.screens.mainmenu.MainFragment
 
 /**
- * A simple [Fragment] subclass.
+ * The LoginFragment class.
+ * Displays The Login Form to let the User Log in.
+ * Uses DataBinding
+ * Extends the Fragment class
  */
 class LoginFragment : Fragment() {
 
@@ -26,6 +29,15 @@ class LoginFragment : Fragment() {
             inflater,
             R.layout.fragment_login, container, false
         )
+
+        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+
+            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
+            of the supportFragmentManager.
+            The transaction replaces the current fragment with MainFragment, in
+            fragment_container_view, of MainActivity walking the User to the "Main Menu" screen.
+            The transaction is added to the BackStack. */
+
         binding.loginButton.setOnClickListener {
             activity!!.supportFragmentManager.commit {
                 setReorderingAllowed(true)

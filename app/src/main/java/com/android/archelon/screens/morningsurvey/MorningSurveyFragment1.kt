@@ -13,9 +13,20 @@ import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
 
 /**
- * A simple [Fragment] subclass.
+ * The Class MorningSurveyFragment1.
+ * Displays the screen "Morning Survey" the first step of "Start New Morning Survey"
+ * Uses DataBinding
+ * Extends the Fragment Class
  */
+
 class MorningSurveyFragment1 : Fragment() {
+
+    /**
+     * The function onCreateView assigns the inflates binding layout, generated from
+     * the layout xml file fragment_morning_survey1 to the val binding.
+     * Returns binding.root which contains the inflated View.
+     *
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +34,16 @@ class MorningSurveyFragment1 : Fragment() {
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentMorningSurvey1Binding>(inflater,
             R.layout.fragment_morning_survey1,container,false)
+
+        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+
+            an onClick listener is set on the previous and the next button.
+            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
+            of the supportFragmentManager.
+            The transaction replaces the current fragment with MorningSurveyFragment2, in
+            fragment_container_view, of MainActivity walking the User to the second screen of "Morning Survey".
+            The transaction is added to the BackStack. */
+
         binding.startNewSurveyButton.setOnClickListener {
             activity!!.supportFragmentManager.commit {
                 setReorderingAllowed(true)
@@ -30,6 +51,11 @@ class MorningSurveyFragment1 : Fragment() {
                 addToBackStack("MorninSurvey1")
             }
         }
+
+        /*
+        The listener of the previous button calls the popBackStack method of the supportFragmentManager to
+         walk the user to the previous screen, eliminating one transaction from the backStack.  */
+
         binding.previousButton.setOnClickListener {
             activity!!.supportFragmentManager.popBackStack()
         }

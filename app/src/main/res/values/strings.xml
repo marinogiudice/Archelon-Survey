@@ -1,3 +1,4 @@
+<!-- Defines the value of the strings parameters of name name used by the UI elements-->
 <resources>
     <string name="app_name">Archelon</string>
 
