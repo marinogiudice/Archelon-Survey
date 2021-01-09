@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -55,4 +56,9 @@ dependencies {
 
     //fragments management
     implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+
+    // Room components
+    implementation 'androidx.room:room-runtime:2.2.6'
+    annotationProcessor 'androidx.room:room-compiler:2.2.6'
 }
