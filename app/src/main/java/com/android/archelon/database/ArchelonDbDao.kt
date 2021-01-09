@@ -1,4 +1,4 @@
-package com.bignerdranch.android.login.database
+package com.android.archelon.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -14,6 +14,6 @@ interface ArchelonDbDao {
     @Update
     fun update(user:User)
     @Query("SELECT * from users_table WHERE email = :email")
-    fun getUser(email:String): LiveData<List<User>>?
+    fun getUser(email:String): LiveData<User>?
 
 }

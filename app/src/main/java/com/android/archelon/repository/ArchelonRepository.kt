@@ -1,12 +1,12 @@
-package com.bignerdranch.android.login.repository
+package com.android.archelon.repository
 
 import androidx.lifecycle.LiveData
-import com.bignerdranch.android.login.database.ArchelonDbDao
-import com.bignerdranch.android.login.database.User
+import com.android.archelon.database.ArchelonDbDao
+import com.android.archelon.database.User
 
 class ArchelonRepository(private val archelonDao: ArchelonDbDao) {
 
-    fun getLogin(email:String) : LiveData<List<User>>?  {
+    fun getUser(email:String) : LiveData<User>?  {
         return archelonDao.getUser(email)
     }
 }

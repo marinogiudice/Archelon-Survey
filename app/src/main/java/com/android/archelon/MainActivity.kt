@@ -2,6 +2,11 @@ package com.android.archelon
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import com.android.archelon.application.ArchelonApplication
+import com.android.archelon.viewmodel.ArchelonViewModel
+import com.android.archelon.viewmodel.ArchelonViewModelFactory
+
 
 /**
 * The MainActivity class.
@@ -10,6 +15,9 @@ import android.os.Bundle
 */
 
 class MainActivity : AppCompatActivity() {
+    private val archelonViewModel: ArchelonViewModel by viewModels {
+        ArchelonViewModelFactory((application as ArchelonApplication).archelonRepo)
+    }
 
     /**
      *  The function onCreate is called when an instance of

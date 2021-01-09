@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentLoginBinding
 import com.android.archelon.screens.mainmenu.MainFragment
 import com.android.archelon.utils.validate_email
 import com.android.archelon.utils.validate_password
+import com.android.archelon.viewmodel.ArchelonViewModel
 
 /**
  * The LoginFragment class.
@@ -22,6 +23,7 @@ import com.android.archelon.utils.validate_password
  * Extends the Fragment class
  */
 class LoginFragment : Fragment() {
+    private val viewModel: ArchelonViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
