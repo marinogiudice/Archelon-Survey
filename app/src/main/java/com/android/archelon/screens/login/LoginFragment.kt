@@ -12,6 +12,8 @@ import androidx.fragment.app.replace
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentLoginBinding
 import com.android.archelon.screens.mainmenu.MainFragment
+import com.android.archelon.utils.validate_email
+import com.android.archelon.utils.validate_password
 
 /**
  * The LoginFragment class.
@@ -29,21 +31,31 @@ class LoginFragment : Fragment() {
             inflater,
             R.layout.fragment_login, container, false
         )
-
-        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
-
-            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
-            of the supportFragmentManager.
-            The transaction replaces the current fragment with MainFragment, in
-            fragment_container_view, of MainActivity walking the User to the "Main Menu" screen.
-            The transaction is added to the BackStack. */
-
         binding.loginButton.setOnClickListener {
-            activity!!.supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<MainFragment>(R.id.fragment_container_view)
+            val email:String=binding.emailLoginText.text.toString().trim()
+            val password:String=binding.passwordLoginText.text.toString().trim()
+            if (validate_email(email)) {
+                if(validate_password(password)) {
+                    /*  The following code is used to handle the navigation between fragments using the support fragment manager.
 
+           The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
+           of the supportFragmentManager.
+           The transaction replaces the current fragment with MainFragment, in
+           fragment_container_view, of MainActivity walking the User to the "Main Menu" screen.
+           The transaction is added to the BackStack. */
+                    activity!!.supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace<MainFragment>(R.id.fragment_container_view)
+
+                    }
+                } else {
+                    binding.passwordLoginText.error="Invalid Password"
+                }
+            } else {
+                binding.emailLoginText.error="Invalid Email"
             }
+
+
         }
         return binding.root
     }
