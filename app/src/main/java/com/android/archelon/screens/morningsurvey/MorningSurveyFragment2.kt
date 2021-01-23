@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
+import androidx.lifecycle.Observer
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
@@ -27,6 +29,7 @@ class MorningSurveyFragment2 : Fragment() {
         ArchelonViewModelFactory((activity as MainActivity).repository)
     }
 
+
     /**
      * The function onCreateView assigns the inflates binding layout, generated from
      * the layout xml file fragment_morning_survey2 to the val binding.
@@ -41,6 +44,24 @@ class MorningSurveyFragment2 : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentMorningSurvey2Binding>(inflater,
             R.layout.fragment_morning_survey2,container,false)
+        val wSpinner = binding.windSpinner
+        val pSpinner = binding.precipitationSpinner
+        val sSpinner = binding.skySpinner
+
+        archelonViewModel.getAllSky()!!.observe(viewLifecycleOwner, Observer {
+            val skySpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            sSpinner.adapter=skySpinnerAdapter
+        })
+
+        archelonViewModel.getAllPrecipitation()!!.observe(viewLifecycleOwner, Observer {
+            val precipitationSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            pSpinner.adapter=precipitationSpinnerAdapter
+        })
+
+        archelonViewModel.getAllWind()!!.observe(viewLifecycleOwner, Observer {
+            val windSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            wSpinner.adapter=windSpinnerAdapter
+        })
 
         /*  The following code is used to handle the navigation between fragments using the support fragment manager.
 

@@ -8,6 +8,7 @@ class PopulatesDb(private var dao: ArchelonDao) {
     private var sectors :List<String> = listOf("North","South","East","West")
     private var precipitation: List<String> = listOf("Rain","Hail","Snow")
     private var sky:List<String> = listOf("Clear","Sunny","Cloudy")
+    private var wind:List<String> = listOf("Breezy", "Windy")
     private var user = User(0L, "marino.g83@gmail.com", "Bottoncino1")
 
     fun insertBeach() {
@@ -35,6 +36,13 @@ class PopulatesDb(private var dao: ArchelonDao) {
         for(i in 0..(sky.size)-1) {
             var sky : Sky = Sky(sky.get(i))
             dao.insertSky(sky)
+        }
+    }
+
+    fun insertWind() {
+        for (i in 0..(wind.size) - 1) {
+            var wind: Wind = Wind(wind.get(i))
+            dao.insertWind(wind)
         }
     }
 

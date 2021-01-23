@@ -39,9 +39,9 @@ class LoginFragment : Fragment() {
             val password:String=binding.passwordLoginText.text.toString().trim()
             if (validate_email(email)) {
                 if(validate_password(password)) {
-                    archelonViewModel.getUser(email)!!.observe(this, Observer {
+                    archelonViewModel.getUser(email).observe(this, Observer {
                         if (it == null) {
-
+                            // Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
                         } else {
                             if (password == it[0].Password) {
                                  Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)

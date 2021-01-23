@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="40sp">
+            android:layout_margin="30sp">
 
             <TextView
 
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="40sp">
+            android:layout_margin="30sp">
 
             <TextView
                 android:id="@+id/morning_survey_2_weather_text"
@@ -76,29 +76,41 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/weather_sky_text"
+            <TextView
+                android:id="@+id/sky_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/weather_sky_hint"
-                android:inputType="textPersonName" />
+                android:text="@string/weather_sky_hint" />
 
-            <EditText
-                android:id="@+id/weather_precipitation_text"
+            <Spinner
+                android:id="@+id/sky_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/weather_precipitation_hint"
-                android:inputType="textPersonName" />
+                android:layout_marginBottom="10sp" />
 
-            <EditText
-                android:id="@+id/weather_wind_text"
+            <TextView
+                android:id="@+id/precipitation_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/weather_wind_intensity_hint"
-                android:inputType="textPersonName" />
+                android:text="@string/weather_precipitation_hint" />
+
+            <Spinner
+                android:id="@+id/precipitation_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp" />
+
+            <TextView
+                android:id="@+id/wind_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/weather_wind_intensity_hint" />
+
+            <Spinner
+                android:id="@+id/wind_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +141,6 @@
                 android:layout_margin="10sp"
                 android:text="@string/next_btn" />
         </LinearLayout>
-
 
 
     </LinearLayout>

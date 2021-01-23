@@ -12,7 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Database(entities = arrayOf(User::class,Beach::class,BeachSector::class, Precipitation::class, Sky::class) , version = 1, exportSchema = false)
+@Database(entities = arrayOf(User::class,Beach::class,BeachSector::class, Precipitation::class, Sky::class, Wind::class) , version = 1, exportSchema = false)
 abstract class ArchelonDatabase : RoomDatabase() {
 
     abstract fun archelonDao() : ArchelonDao
@@ -26,9 +26,11 @@ abstract class ArchelonDatabase : RoomDatabase() {
                 scope.launch {
                     var archelonDao = database.archelonDao()
                     var populateDb = PopulatesDb(archelonDao)
+                    populateDb.insertBeach()
                     populateDb.insertBeach_Sector()
                     populateDb.insertPrecipitation()
                     populateDb.insertSky()
+                    populateDb.insertWind()
                     populateDb.insertUser()
                 }
             }

@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.lifecycle.Observer
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
@@ -50,7 +52,18 @@ class MorningSurveyFragment1 : Fragment() {
             The transaction replaces the current fragment with MorningSurveyFragment2, in
             fragment_container_view, of MainActivity walking the User to the second screen of "Morning Survey".
             The transaction is added to the BackStack. */
+        val beachSpinner=binding.beachSpinner
+        val sectorSpinner=binding.beachSectorSpinner
+        archelonViewModel.getAllBeach()!!.observe(viewLifecycleOwner,Observer {
+            val beachSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            beachSpinner.adapter=beachSpinnerAdapter
+        })
 
+
+        archelonViewModel.getAllSector()!!.observe(viewLifecycleOwner,Observer {
+            val sectorSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            sectorSpinner.adapter=sectorSpinnerAdapter
+        })
         binding.startNewSurveyButton.setOnClickListener {
             activity!!.supportFragmentManager.commit {
                 setReorderingAllowed(true)
