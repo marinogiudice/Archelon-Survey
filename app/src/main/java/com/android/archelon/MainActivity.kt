@@ -3,9 +3,12 @@ package com.android.archelon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.android.archelon.application.ArchelonApplication
+import com.android.archelon.database.ArchelonDatabase
+import com.android.archelon.repository.ArchelonRepository
 import com.android.archelon.viewmodel.ArchelonViewModel
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 
 /**
@@ -15,8 +18,11 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
 */
 
 class MainActivity : AppCompatActivity() {
+    val applicationScope = CoroutineScope(SupervisorJob())
+    val database by lazy { ArchelonDatabase.getDatabase(this,applicationScope)}
+    val repository by lazy { ArchelonRepository(database.archelonDao()) }
     private val archelonViewModel: ArchelonViewModel by viewModels {
-        ArchelonViewModelFactory((application as ArchelonApplication).archelonRepo)
+        ArchelonViewModelFactory(repository)
     }
 
     /**

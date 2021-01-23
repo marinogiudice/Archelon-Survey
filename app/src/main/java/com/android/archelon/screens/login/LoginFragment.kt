@@ -1,29 +1,30 @@
 package com.android.archelon.screens.login
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.fragment.app.*
+
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentLoginBinding
-import com.android.archelon.screens.mainmenu.MainFragment
 import com.android.archelon.utils.validate_email
 import com.android.archelon.utils.validate_password
 import com.android.archelon.viewmodel.ArchelonViewModel
+import androidx.lifecycle.Observer
+import com.android.archelon.MainActivity
+import com.android.archelon.screens.mainmenu.MainFragment
+import com.android.archelon.viewmodel.ArchelonViewModelFactory
 
 /**
- * The LoginFragment class.
- * Displays The Login Form to let the User Log in.
- * Uses DataBinding
- * Extends the Fragment class
+ * A simple [Fragment] subclass.
  */
 class LoginFragment : Fragment() {
-    private val viewModel: ArchelonViewModel by activityViewModels()
+    private val archelonViewModel: ArchelonViewModel by activityViewModels {
+        ArchelonViewModelFactory((activity as MainActivity).repository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +39,20 @@ class LoginFragment : Fragment() {
             val password:String=binding.passwordLoginText.text.toString().trim()
             if (validate_email(email)) {
                 if(validate_password(password)) {
+                    archelonViewModel.getUser(email)!!.observe(this, Observer {
+                        if (it == null) {
+
+                        } else {
+                            if (password == it[0].Password) {
+                                 Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
+                                  .show();
+                            } else {
+                                //Toast.makeText(activity, "Password Error", Toast.LENGTH_SHORT)
+                                //  .show();
+                            }
+                        }
+                    })
+
                     /*  The following code is used to handle the navigation between fragments using the support fragment manager.
 
            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
@@ -61,4 +76,8 @@ class LoginFragment : Fragment() {
         }
         return binding.root
     }
-}
+
+
+    }
+
+

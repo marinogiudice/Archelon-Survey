@@ -3,7 +3,7 @@
     package="com.android.archelon">
 
     <application
-        android:name=".application.ArchelonApplication"
+        android:name=".ArchelonApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

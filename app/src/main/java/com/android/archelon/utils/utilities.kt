@@ -1,5 +1,7 @@
 package com.android.archelon.utils
 
+import com.android.archelon.dao.ArchelonDao
+import com.android.archelon.entities.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -14,3 +16,4 @@ fun validate_password(pass: String) : Boolean {
     return matcher.matches()
 
 }
+

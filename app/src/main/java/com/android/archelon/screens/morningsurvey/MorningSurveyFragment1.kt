@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import com.android.archelon.MainActivity
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
+import com.android.archelon.viewmodel.ArchelonViewModel
+import com.android.archelon.viewmodel.ArchelonViewModelFactory
 
 /**
  * The Class MorningSurveyFragment1.
@@ -20,6 +24,9 @@ import com.android.archelon.databinding.FragmentMorningSurvey1Binding
  */
 
 class MorningSurveyFragment1 : Fragment() {
+    private val archelonViewModel: ArchelonViewModel by activityViewModels {
+        ArchelonViewModelFactory((activity as MainActivity).repository)
+    }
 
     /**
      * The function onCreateView assigns the inflates binding layout, generated from
