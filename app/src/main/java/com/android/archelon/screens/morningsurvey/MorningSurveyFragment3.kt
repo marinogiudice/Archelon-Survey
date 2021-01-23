@@ -60,7 +60,7 @@ class MorningSurveyFragment3 : Fragment() {
             activity!!.supportFragmentManager.popBackStack(
                 "MainMenu",
                 FragmentManager.POP_BACK_STACK_INCLUSIVE
-            );
+            )
             activity!!.supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")
@@ -69,6 +69,14 @@ class MorningSurveyFragment3 : Fragment() {
 
         binding.endSurveyBtn.setOnClickListener {
             archelonViewModel.submit()
+            activity!!.supportFragmentManager.popBackStack(
+                "MainMenu",
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
+            activity!!.supportFragmentManager.commit() {
+                replace<MainFragment>(R.id.fragment_container_view)
+                addToBackStack("MainMenu")
+            }
         }
         return binding.root
     }

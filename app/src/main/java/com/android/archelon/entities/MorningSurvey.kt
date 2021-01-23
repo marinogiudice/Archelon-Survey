@@ -6,12 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "morning_survey_table")
 data class MorningSurvey(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var Id: Long ?,
 
     @ColumnInfo(name = "user")
-    var User: String?,
+    var User: Long?,
 
     @ColumnInfo(name = "beach")
     var Beach: String?,
@@ -20,7 +17,7 @@ data class MorningSurvey(
     var Sector: String?,
 
     @ColumnInfo(name = "timestamp")
-    var Timestamp: String?,
+    var Timestamp: Long?,
 
     @ColumnInfo(name = "leader")
     var Leader: String?,
@@ -38,3 +35,8 @@ data class MorningSurvey(
     var Wind: String?
 
 )
+{
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var Id: Long =0L
+}

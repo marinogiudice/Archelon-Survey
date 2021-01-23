@@ -43,10 +43,10 @@ class LoginFragment : Fragment() {
                     archelonViewModel.login(email, password)
                     archelonViewModel.loggedIn.observe(viewLifecycleOwner, Observer {
                         if (it == false) {
-                            Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show()
                         } else {
                             Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
-                                .show();
+                                .show()
                             activity!!.supportFragmentManager.commit {
                                 setReorderingAllowed(true)
                                 replace<MainFragment>(R.id.fragment_container_view)

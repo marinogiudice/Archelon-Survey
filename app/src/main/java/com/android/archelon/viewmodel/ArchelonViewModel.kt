@@ -1,5 +1,6 @@
 package com.android.archelon.viewmodel
 
+import android.icu.text.SimpleDateFormat
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,13 +13,18 @@ import com.android.archelon.screens.morningsurvey.MorningSurveyFragment1
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.sql.Timestamp
+import java.util.*
 
-class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel(){
+class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel() {
 
     val loggedIn = MutableLiveData<Boolean>(false)
     val beaches=repository.getAllBeach()
     val allBeachSector=repository.getAllSector()
-    val morningSurvey : MorningSurvey =MorningSurvey(0L,"","","","","","","","","")
+    val allSky=repository.getAllSky()
+    val allWind=repository.getAllWind()
+    val allPrecipitation = repository.getAllPrecipitation()
+    val morningSurvey : MorningSurvey = MorningSurvey(null,"","",null,"","","","","")
 
 
     fun insertUser(user: User) = viewModelScope.launch {
@@ -37,35 +43,74 @@ class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel
         return repository.getAllSector()
     }
 
-    fun getAllSky() : LiveData<List<Sky>>? {
-        return repository.getAllSky()
-    }
+    //fun getAllSky() : LiveData<List<Sky>>? {
+       // return repository.getAllSky()
+   // }
 
-    fun getAllPrecipitation() : LiveData<List<Precipitation>>? {
+   /* fun getAllPrecipitation() : LiveData<List<Precipitation>>? {
         return repository.getAllPrecipitation()
     }
 
     fun getAllWind() : LiveData<List<Wind>>? {
         return repository.getAllWind()
-    }
+    }*/
 
     fun login(email:String, password:String) {
-       val user = getUser(email)
-        if(user.size<=0) {
+       val users = getUser(email)
+        if(users.size<=0) {
             loggedIn.value=false
         } else {
-            val pass = user[0].Password
+            val user = users[0]
+            val pass = user.Password
             if (pass == password) {
                 loggedIn.value = true
-                //setUserSurvey(email)
+                setUserSurvey(user)
             }
         }
        // val user1 = user.value
         //loggedIn.value = user?.Password==password
     }
 
-    fun setBeachSurvey(par:Beach) {
-        morningSurvey?.Beach=par.Name
+    fun setBeachSurvey(par:Any) {
+        if(par is Beach) {
+            morningSurvey.Beach = par.Name
+        }
+    }
+
+    fun setUserSurvey(par:User) {
+        morningSurvey.User=par.userId
+    }
+
+    fun setSectorSurvey(par:Any) {
+        if(par is BeachSector) {
+            morningSurvey.Sector=par.Name
+        }
+    }
+
+    fun setWindSurvey(par: Any) {
+        if (par is Wind) {
+            morningSurvey.Wind=par.Intensity
+        }
+    }
+
+    fun setSkySurvey(par: Any) {
+        if (par is Sky) {
+            morningSurvey.Sky=par.Condition
+        }
+    }
+
+    fun setPrecipitationSurvey(par: Any) {
+        if (par is Precipitation) {
+            morningSurvey.Precipitation=par.Precipitation
+        }
+    }
+
+    fun getTimeStamp() :String{
+        val millisec:Long =System.currentTimeMillis()
+        morningSurvey.Timestamp=millisec
+        val simpleDateFormat : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        val cDate =Date(millisec)
+        return simpleDateFormat.format(cDate)
     }
 
     fun submit() {

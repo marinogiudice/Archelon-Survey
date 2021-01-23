@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class User (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var Id: Long ,
+    var userId: Long ,
 
     @ColumnInfo(name = "email")
     var Email: String,

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
@@ -44,23 +45,23 @@ class MorningSurveyFragment2 : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentMorningSurvey2Binding>(inflater,
             R.layout.fragment_morning_survey2,container,false)
-        val wSpinner = binding.windSpinner
-        val pSpinner = binding.precipitationSpinner
-        val sSpinner = binding.skySpinner
+        val windSpinner = binding.windSpinner
+        val precipitationSpinner = binding.precipitationSpinner
+        val skySpinner = binding.skySpinner
 
-        archelonViewModel.getAllSky()!!.observe(viewLifecycleOwner, Observer {
+        archelonViewModel.allSky!!.observe(viewLifecycleOwner, Observer {
             val skySpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
-            sSpinner.adapter=skySpinnerAdapter
+            skySpinner.adapter=skySpinnerAdapter
         })
 
-        archelonViewModel.getAllPrecipitation()!!.observe(viewLifecycleOwner, Observer {
+        archelonViewModel.allPrecipitation!!.observe(viewLifecycleOwner, Observer {
             val precipitationSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
-            pSpinner.adapter=precipitationSpinnerAdapter
+            precipitationSpinner.adapter=precipitationSpinnerAdapter
         })
 
-        archelonViewModel.getAllWind()!!.observe(viewLifecycleOwner, Observer {
+        archelonViewModel.allWind!!.observe(viewLifecycleOwner, Observer {
             val windSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
-            wSpinner.adapter=windSpinnerAdapter
+            windSpinner.adapter=windSpinnerAdapter
         })
 
         /*  The following code is used to handle the navigation between fragments using the support fragment manager.
@@ -73,11 +74,27 @@ class MorningSurveyFragment2 : Fragment() {
          */
 
         binding.ms2Next.setOnClickListener {
-            activity!!.supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<MorningSurveyFragment3>(R.id.fragment_container_view)
-                addToBackStack("MorningSurvey2")
+            if(skySpinner.selectedItem!=null) {
+                archelonViewModel.setSkySurvey(skySpinner.selectedItem)
+                if(precipitationSpinner.selectedItem!=null) {
+                    archelonViewModel.setPrecipitationSurvey(precipitationSpinner.selectedItem)
+                    if(windSpinner.selectedItem!=null) {
+                        archelonViewModel.setWindSurvey(windSpinner.selectedItem)
+                        activity!!.supportFragmentManager.commit {
+                            setReorderingAllowed(true)
+                            replace<MorningSurveyFragment3>(R.id.fragment_container_view)
+                            addToBackStack("MorningSurvey2")
+                        }
+                    } else {
+                            Toast.makeText(activity, "Please Set Wind", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(activity, "Please Set Precipitation", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(activity, "Please Set Sky", Toast.LENGTH_SHORT).show()
             }
+
         }
 
         /*
@@ -92,7 +109,7 @@ class MorningSurveyFragment2 : Fragment() {
             create a new transaction to walk the User back to the MainMenu screen. */
 
         binding.ms2Cancel.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            activity!!.supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE)
             activity!!.supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")

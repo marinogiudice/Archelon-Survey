@@ -15,7 +15,6 @@ import com.android.archelon.MainActivity
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
-import com.android.archelon.entities.Beach
 import com.android.archelon.viewmodel.ArchelonViewModel
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
 
@@ -26,13 +25,14 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
  * Extends the Fragment Class
  */
 
-class MorningSurveyFragment1 : Fragment() , AdapterView.OnItemSelectedListener{
+class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
     }
 
-   override fun onItemSelected(parent: AdapterView<*>?, beachSpinner : View?, position: Int, id: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, view : View?, position: Int, id: Long) {
         var value = parent?.getItemAtPosition(position)
+       
 
 
     }
@@ -64,6 +64,9 @@ class MorningSurveyFragment1 : Fragment() , AdapterView.OnItemSelectedListener{
             The transaction is added to the BackStack. */
         val beachSpinner=binding.beachSpinner
         val sectorSpinner=binding.beachSectorSpinner
+        val timeStampText=binding.timeStampView
+        timeStampText.text=archelonViewModel.getTimeStamp()
+
         archelonViewModel.beaches!!.observe(viewLifecycleOwner,Observer {
             val beachSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             beachSpinner.adapter=beachSpinnerAdapter
@@ -79,18 +82,29 @@ class MorningSurveyFragment1 : Fragment() , AdapterView.OnItemSelectedListener{
         //sectorSpinner.onItemSelectedListener=this
         binding.startNewSurveyButton.setOnClickListener {
             if(beachSpinner.selectedItem!=null) {
-                archelonViewModel.setBeachSurvey(beachSpinner.selectedItem as Beach)
-                activity!!.supportFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    replace<MorningSurveyFragment2>(R.id.fragment_container_view)
-                    addToBackStack("MorninSurvey1")
+                archelonViewModel.setBeachSurvey(beachSpinner.selectedItem)
+                if(sectorSpinner.selectedItem!=null) {
+                    archelonViewModel.setSectorSurvey(sectorSpinner.selectedItem)
+                    activity!!.supportFragmentManager.commit {
+                        setReorderingAllowed(true)
+                        replace<MorningSurveyFragment2>(R.id.fragment_container_view)
+                        addToBackStack("MorninSurvey1")
+                    }
+                }else {
+                    Toast.makeText(activity, "Please Set Beach Sector", Toast.LENGTH_SHORT).show()
                 }
-            }
-            else {
-                Toast.makeText(activity, "Please Set Beach", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(activity, "Please Set Beach", Toast.LENGTH_SHORT).show()
             }
 
+            }
+        binding.previousButton.setOnClickListener {
+            activity!!.supportFragmentManager.popBackStack()
         }
+        return binding.root
+    }
+
+
 
 
 
@@ -100,11 +114,8 @@ class MorningSurveyFragment1 : Fragment() , AdapterView.OnItemSelectedListener{
         The listener of the previous button calls the popBackStack method of the supportFragmentManager to
          walk the user to the previous screen, eliminating one transaction from the backStack.  */
 
-        binding.previousButton.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack()
-        }
 
-        return binding.root
-    }
+
+
 
 }

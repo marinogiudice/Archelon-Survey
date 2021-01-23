@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "beaches_table")
-data class Beach (@PrimaryKey @ColumnInfo(name = "beach_name") val Name: String) {
+data class Beach (@PrimaryKey @ColumnInfo(name = "Beach") val Name: String) {
 
     override fun toString() : String {
         return this.Name

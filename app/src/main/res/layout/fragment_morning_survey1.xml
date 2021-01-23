@@ -68,14 +68,10 @@
                 android:layout_height="wrap_content"
                 android:text="Time Stamp" />
 
-            <EditText
-                android:id="@+id/beach_sector_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10sp"
-                android:ems="10"
-                android:hint="@string/beach_sector_hint"
-                android:inputType="textPersonName" />
+            <TextView
+                android:id="@+id/time_stamp_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
