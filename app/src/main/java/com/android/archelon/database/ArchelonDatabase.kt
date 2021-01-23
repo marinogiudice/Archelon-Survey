@@ -28,7 +28,7 @@ abstract class ArchelonDatabase : RoomDatabase() {
                     var populateDb = PopulatesDb(archelonDao)
                     populateDb.insertUser()
                     populateDb.insertBeach()
-                    populateDb.insertBeach_Sector()
+                    populateDb.insertBeachSector()
                     populateDb.insertPrecipitation()
                     populateDb.insertSky()
                     populateDb.insertWind()
@@ -64,5 +64,4 @@ abstract class ArchelonDatabase : RoomDatabase() {
         }
 
     }
-
 }

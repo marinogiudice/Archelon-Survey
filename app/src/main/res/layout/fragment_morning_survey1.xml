@@ -66,7 +66,7 @@
                 android:id="@+id/time_stamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Time Stamp" />
+                android:text="@string/timestamp" />
 
             <TextView
                 android:id="@+id/time_stamp_view"
@@ -79,7 +79,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:layout_margin="30sp"
             android:orientation="vertical">
 

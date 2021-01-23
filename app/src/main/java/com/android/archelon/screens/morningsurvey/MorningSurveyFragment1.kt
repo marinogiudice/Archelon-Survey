@@ -10,18 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
-import com.android.archelon.entities.Beach
-import com.android.archelon.entities.User
 import com.android.archelon.viewmodel.ArchelonViewModel
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
-import kotlinx.android.synthetic.main.fragment_morning_survey1.*
 
 /**
  * The Class MorningSurveyFragment1.
@@ -30,19 +25,9 @@ import kotlinx.android.synthetic.main.fragment_morning_survey1.*
  * Extends the Fragment Class
  */
 
-class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
+class MorningSurveyFragment1 : Fragment() {
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view : View?, position: Int, id: Long) {
-        var value = parent?.getItemAtPosition(position)
-
-
-
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>) {
     }
 
     /**
@@ -83,14 +68,13 @@ class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
             val sectorSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             sectorSpinner.adapter=sectorSpinnerAdapter
         })
-        //beachSpinner.onItemSelectedListener=this
-        //sectorSpinner.onItemSelectedListener=this
+
         binding.startNewSurveyButton.setOnClickListener {
             if(beachSpinner.selectedItem!=null) {
                 archelonViewModel.setBeachSurvey(beachSpinner.selectedItem)
                 if(sectorSpinner.selectedItem!=null) {
                     archelonViewModel.setSectorSurvey(sectorSpinner.selectedItem)
-                    activity!!.supportFragmentManager.commit {
+                    requireActivity().supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         replace<MorningSurveyFragment2>(R.id.fragment_container_view)
                         addToBackStack("MorninSurvey1")
@@ -104,7 +88,7 @@ class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
 
             }
         binding.previousButton.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
         return binding.root
     }

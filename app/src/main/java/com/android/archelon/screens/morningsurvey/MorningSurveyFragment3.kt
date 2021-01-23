@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
-import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
@@ -51,7 +50,7 @@ class MorningSurveyFragment3 : Fragment() {
             walk the user to the previous screen.  */
 
         binding.ms3PreviousButton.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         /*  The listener of the cancel button calls the popBackStack method of the support screen to empty the backStack and
@@ -59,11 +58,11 @@ class MorningSurveyFragment3 : Fragment() {
 
         binding.ms3CancelButton.setOnClickListener {
             archelonViewModel.cancel()
-            activity!!.supportFragmentManager.popBackStack(
+            requireActivity().supportFragmentManager.popBackStack(
                 "MainMenu",
                 FragmentManager.POP_BACK_STACK_INCLUSIVE
             )
-            activity!!.supportFragmentManager.commit() {
+            requireActivity().supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")
             }
@@ -72,11 +71,11 @@ class MorningSurveyFragment3 : Fragment() {
         binding.endSurveyBtn.setOnClickListener {
             archelonViewModel.submit()
             archelonViewModel.cancel()
-            activity!!.supportFragmentManager.popBackStack(
+            requireActivity().supportFragmentManager.popBackStack(
                 "MainMenu",
                 FragmentManager.POP_BACK_STACK_INCLUSIVE
             );
-            activity!!.supportFragmentManager.commit() {
+            requireActivity().supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")
             }

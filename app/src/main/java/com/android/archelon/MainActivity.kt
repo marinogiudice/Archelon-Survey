@@ -3,8 +3,6 @@ package com.android.archelon
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.activityViewModels
-import com.android.archelon.ArchelonApplication
 import com.android.archelon.database.ArchelonDatabase
 import com.android.archelon.repository.ArchelonRepository
 import com.android.archelon.viewmodel.ArchelonViewModel

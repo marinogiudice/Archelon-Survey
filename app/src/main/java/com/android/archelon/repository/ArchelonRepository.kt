@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 class ArchelonRepository (private val archelonDao: ArchelonDao) {
 
-    suspend fun insertUser(user: User) {
+    fun insertUser(user: User) {
         archelonDao.insertUser(user)
     }
 

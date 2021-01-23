@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "wind_table")
 data class Wind (
-    @PrimaryKey @ColumnInfo(name = "wind_intensity") var Intensity: String) {
+    @PrimaryKey @ColumnInfo(name = "wind_intensity") var intensity: String) {
 
     override fun toString(): String {
-        return this.Intensity
+        return this.intensity
     }
 }

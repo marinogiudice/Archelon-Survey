@@ -7,36 +7,36 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "morning_survey_table")
 data class MorningSurvey(
 
-    @ColumnInfo(name = "user")
-    var User: Long?,
+    @ColumnInfo(name = "user_id")
+    var userId: Long?,
 
     @ColumnInfo(name = "beach")
-    var Beach: String?,
+    var beach: String?,
 
-    @ColumnInfo(name = "sector")
-    var Sector: String?,
+    @ColumnInfo(name = "beach_sector")
+    var beachSector: String?,
 
     @ColumnInfo(name = "timestamp")
-    var Timestamp: Long?,
+    var timestamp: Long?,
 
-    @ColumnInfo(name = "leader")
-    var Leader: Long?,
+    @ColumnInfo(name = "leader_id")
+    var leaderId: Long?,
 
     @ColumnInfo(name = "sec_obs")
-    var Second: Long?,
+    var secondObs: Long?,
 
     @ColumnInfo(name = "sky")
-    var Sky: String?,
+    var sky: String?,
 
     @ColumnInfo(name = "precipitation")
-    var Precipitation: String?,
+    var precipitation: String?,
 
     @ColumnInfo(name = "wind")
-    var Wind: String?
+    var wind: String?
 
 )
 {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var Id: Long =0L
+    @ColumnInfo(name = "msId")
+    var msId: Long =0L
 }

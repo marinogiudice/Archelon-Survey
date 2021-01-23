@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 
 class PopulatesDb(private var dao: ArchelonDao) {
+
     private var beaches :List<String> = listOf("campolongo1","campolongo2","campolongo3")
     private var sectors :List<String> = listOf("North","South","East","West")
     private var precipitation: List<String> = listOf("Rain","Hail","Snow")
@@ -26,7 +27,7 @@ class PopulatesDb(private var dao: ArchelonDao) {
         }
     }
 
-    fun insertBeach_Sector() {
+    fun insertBeachSector() {
         for(i in 0..(sectors.size)-1) {
             var sector : BeachSector = BeachSector(sectors.get(i))
             dao.insertSector(sector)
@@ -67,7 +68,4 @@ class PopulatesDb(private var dao: ArchelonDao) {
             dao.insertObservers(observer)
         }
     }
-
-
-
 }

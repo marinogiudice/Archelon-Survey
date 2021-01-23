@@ -5,9 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "precipitation_table")
-data class Precipitation (@PrimaryKey @ColumnInfo(name = "precipitation") var Precipitation: String) {
+data class Precipitation (@PrimaryKey @ColumnInfo(name = "precipitation") var precipitation: String) {
 
     override fun toString(): String {
-        return this.Precipitation
+        return this.precipitation
     }
 }

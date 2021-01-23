@@ -10,13 +10,12 @@ import androidx.fragment.app.*
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentLoginBinding
-import com.android.archelon.utils.validate_email
-import com.android.archelon.utils.validate_password
 import com.android.archelon.viewmodel.ArchelonViewModel
 import androidx.lifecycle.Observer
-import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 import com.android.archelon.screens.mainmenu.MainFragment
+import com.android.archelon.utils.validateEmail
+import com.android.archelon.utils.validatePassword
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
 
 /**
@@ -39,8 +38,8 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val email: String = binding.emailLoginText.text.toString().trim()
             val password: String = binding.passwordLoginText.text.toString().trim()
-            if (validate_email(email)) {
-                if (validate_password(password)) {
+            if (validateEmail(email)) {
+                if (validatePassword(password)) {
                     archelonViewModel.login(email, password)
                     archelonViewModel.loggedIn.observe(viewLifecycleOwner, Observer {
                         if (it == false) {
@@ -48,7 +47,7 @@ class LoginFragment : Fragment() {
                         } else {
                             Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
                                 .show();
-                            activity!!.supportFragmentManager.commit {
+                            requireActivity().supportFragmentManager.commit {
                                 setReorderingAllowed(true)
                                 replace<MainFragment>(R.id.fragment_container_view)
 
@@ -62,9 +61,6 @@ class LoginFragment : Fragment() {
             } else {
                 binding.emailLoginText.error = "Invalid Email"
             }
-            //Toast.makeText(activity, "Password Error", Toast.LENGTH_SHORT)
-            //  .show();
-
 
             /*  The following code is used to handle the navigation between fragments using the support fragment manager.
 

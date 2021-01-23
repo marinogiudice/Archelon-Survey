@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
-import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
@@ -97,7 +96,7 @@ class MorningSurveyFragment2 : Fragment() {
                             archelonViewModel.setPrecipitationSurvey(precipitationSpinner.selectedItem)
                             if(windSpinner.selectedItem!=null) {
                                 archelonViewModel.setWindSurvey(windSpinner.selectedItem)
-                                activity!!.supportFragmentManager.commit {
+                                requireActivity().supportFragmentManager.commit {
                                     setReorderingAllowed(true)
                                     replace<MorningSurveyFragment3>(R.id.fragment_container_view)
                                     addToBackStack("MorningSurvey2")
@@ -124,7 +123,7 @@ class MorningSurveyFragment2 : Fragment() {
          walk the user to the previous screen, eliminating one transaction from the backStack.  */
 
         binding.ms2PreviousButton.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack()
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         /*  The listener of the cancel button calls the popBackStack method of the support screen to empty the backStack and
@@ -132,8 +131,8 @@ class MorningSurveyFragment2 : Fragment() {
 
         binding.ms2Cancel.setOnClickListener {
             archelonViewModel.cancel()
-            activity!!.supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            activity!!.supportFragmentManager.commit() {
+            requireActivity().supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            requireActivity().supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")
             }

@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
             The transaction is added to the BackStack. */
 
         binding.startSurveyButton.setOnClickListener {
-            activity!!.supportFragmentManager.commit {
+            requireActivity().supportFragmentManager.commit {
                 setReorderingAllowed(true)
                 replace<MorningSurveyFragment1>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")

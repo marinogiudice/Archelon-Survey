@@ -29,6 +29,7 @@
     <string name="weather_wind_intensity_hint">Wind Intensity</string>
     <string name="end_survey_btn">End Survey</string>
     <string name="end_survey_top">Submit Survey</string>
+    <string name="timestamp">Timestamp</string>
 
 
 

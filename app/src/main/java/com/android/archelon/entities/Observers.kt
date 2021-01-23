@@ -7,14 +7,14 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "observers_table")
 data class Observers (
     @ColumnInfo(name = "Second_Observer")
-    var Second_Obserber_Name: String
+    var secondObsName: String
 )
 {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Long? =null
+    @ColumnInfo(name = "second_observer_id")
+    var secondObsId: Long? =null
 
     override fun toString(): String {
-        return this.Second_Obserber_Name
+        return this.secondObsName
     }
 }
