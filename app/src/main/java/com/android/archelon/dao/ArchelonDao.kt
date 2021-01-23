@@ -7,6 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.android.archelon.entities.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ArchelonDao {
@@ -15,7 +16,7 @@ interface ArchelonDao {
     fun insertUser(user: User)
 
     @Query("SELECT * FROM users_table WHERE email =:email")
-    fun getUser(email: String?): LiveData<List<User>>
+    fun getUser(email: String?): List<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertBeach(beach: Beach)
@@ -46,6 +47,9 @@ interface ArchelonDao {
 
     @Query("SELECT * FROM wind_table")
     fun getAllWind(): LiveData<List<Wind>>?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSurvey(survey: MorningSurvey?)
 
 
 }

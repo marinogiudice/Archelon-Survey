@@ -2,6 +2,9 @@ package com.android.archelon.utils
 
 import com.android.archelon.dao.ArchelonDao
 import com.android.archelon.entities.*
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
 
 class PopulatesDb(private var dao: ArchelonDao) {
     private var beaches :List<String> = listOf("campolongo1","campolongo2","campolongo3")
@@ -11,6 +14,9 @@ class PopulatesDb(private var dao: ArchelonDao) {
     private var wind:List<String> = listOf("Breezy", "Windy")
     private var user = User(0L, "marino.g83@gmail.com", "Bottoncino1")
 
+    fun insertUser() {
+        dao.insertUser(user)
+    }
     fun insertBeach() {
         for(i in 0..(beaches.size)-1) {
             var beach : Beach = Beach(beaches.get(i))
@@ -46,8 +52,6 @@ class PopulatesDb(private var dao: ArchelonDao) {
         }
     }
 
-    fun insertUser() {
-        dao.insertUser(user)
-    }
+
 
 }

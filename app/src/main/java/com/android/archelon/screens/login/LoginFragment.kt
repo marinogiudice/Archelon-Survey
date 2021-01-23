@@ -40,8 +40,8 @@ class LoginFragment : Fragment() {
             val password: String = binding.passwordLoginText.text.toString().trim()
             if (validate_email(email)) {
                 if (validate_password(password)) {
-                    archelonViewModel.login(email,password)
-                    archelonViewModel.loggedIn.observe(this, Observer {
+                    archelonViewModel.login(email, password)
+                    archelonViewModel.loggedIn.observe(viewLifecycleOwner, Observer {
                         if (it == false) {
                             Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
                         } else {
@@ -54,7 +54,8 @@ class LoginFragment : Fragment() {
                             }
                         }
                     })
-                } else {
+                }
+                else {
                     binding.passwordLoginText.error = "Invalid Password"
                 }
             } else {

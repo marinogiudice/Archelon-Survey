@@ -66,6 +66,10 @@ class MorningSurveyFragment3 : Fragment() {
                 addToBackStack("MainMenu")
             }
         }
+
+        binding.endSurveyBtn.setOnClickListener {
+            archelonViewModel.submit()
+        }
         return binding.root
     }
 }

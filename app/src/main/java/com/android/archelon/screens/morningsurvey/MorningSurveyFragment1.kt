@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
@@ -15,6 +15,7 @@ import com.android.archelon.MainActivity
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
+import com.android.archelon.entities.Beach
 import com.android.archelon.viewmodel.ArchelonViewModel
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
 
@@ -25,9 +26,18 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
  * Extends the Fragment Class
  */
 
-class MorningSurveyFragment1 : Fragment() {
+class MorningSurveyFragment1 : Fragment() , AdapterView.OnItemSelectedListener{
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
+    }
+
+   override fun onItemSelected(parent: AdapterView<*>?, beachSpinner : View?, position: Int, id: Long) {
+        var value = parent?.getItemAtPosition(position)
+
+
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
     }
 
     /**
@@ -54,23 +64,37 @@ class MorningSurveyFragment1 : Fragment() {
             The transaction is added to the BackStack. */
         val beachSpinner=binding.beachSpinner
         val sectorSpinner=binding.beachSectorSpinner
-        archelonViewModel.getAllBeach()!!.observe(viewLifecycleOwner,Observer {
+        archelonViewModel.beaches!!.observe(viewLifecycleOwner,Observer {
             val beachSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             beachSpinner.adapter=beachSpinnerAdapter
+            beachSpinner.prompt="Select Beach"
         })
 
 
-        archelonViewModel.getAllSector()!!.observe(viewLifecycleOwner,Observer {
+        archelonViewModel.allBeachSector!!.observe(viewLifecycleOwner,Observer {
             val sectorSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             sectorSpinner.adapter=sectorSpinnerAdapter
         })
+        //beachSpinner.onItemSelectedListener=this
+        //sectorSpinner.onItemSelectedListener=this
         binding.startNewSurveyButton.setOnClickListener {
-            activity!!.supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<MorningSurveyFragment2>(R.id.fragment_container_view)
-                addToBackStack("MorninSurvey1")
+            if(beachSpinner.selectedItem!=null) {
+                archelonViewModel.setBeachSurvey(beachSpinner.selectedItem as Beach)
+                activity!!.supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<MorningSurveyFragment2>(R.id.fragment_container_view)
+                    addToBackStack("MorninSurvey1")
+                }
             }
+            else {
+                Toast.makeText(activity, "Please Set Beach", Toast.LENGTH_SHORT).show();
+            }
+
         }
+
+
+
+
 
         /*
         The listener of the previous button calls the popBackStack method of the supportFragmentManager to

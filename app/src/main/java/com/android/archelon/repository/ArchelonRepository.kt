@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.android.archelon.dao.ArchelonDao
 import com.android.archelon.entities.*
+import kotlinx.coroutines.flow.Flow
 
 class ArchelonRepository (private val archelonDao: ArchelonDao) {
 
@@ -11,7 +12,7 @@ class ArchelonRepository (private val archelonDao: ArchelonDao) {
         archelonDao.insertUser(user)
     }
 
-    fun getUser(email: String): LiveData<List<User>> {
+    fun getUser(email: String): List<User> {
         return archelonDao.getUser(email)
     }
 
@@ -33,5 +34,9 @@ class ArchelonRepository (private val archelonDao: ArchelonDao) {
 
     fun getAllWind() : LiveData<List<Wind>>? {
         return archelonDao.getAllWind()
+    }
+
+    fun insertSurvey(survey: MorningSurvey) {
+        archelonDao.insertSurvey(survey)
     }
 }
