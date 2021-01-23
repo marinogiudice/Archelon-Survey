@@ -30,6 +30,13 @@ interface ArchelonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertWind(wind: Wind)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLeaders(leader: Leaders)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertObservers(observer: Observers)
+
+
     @Query("SELECT * FROM beaches_table")
     fun getAllBeach(): LiveData<List<Beach>>?
 
@@ -44,6 +51,12 @@ interface ArchelonDao {
 
     @Query("SELECT * FROM wind_table")
     fun getAllWind(): LiveData<List<Wind>>?
+
+    @Query("SELECT * FROM observers_table")
+    fun getAllObservers(): LiveData<List<Observers>>?
+
+    @Query("SELECT * FROM leaders_table")
+    fun getAllLeaders(): LiveData<List<Leaders>>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSurvey(survey: MorningSurvey?)

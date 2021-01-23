@@ -35,21 +35,29 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/ms_leader_text"
+            <TextView
+                android:id="@+id/leaders_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/obs_leader_hint"
-                android:inputType="textPersonName" />
+                android:text="@string/obs_leader_hint" />
 
-            <EditText
-                android:id="@+id/second_obs_text"
+            <Spinner
+                android:id="@+id/leaders_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/second_obs_hint"
-                android:inputType="textPersonName" />
+                android:layout_marginBottom="10sp" />
+
+            <TextView
+                android:id="@+id/observer_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/second_obs_hint" />
+
+            <Spinner
+                android:id="@+id/observers_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp" />
         </LinearLayout>
 
         <LinearLayout

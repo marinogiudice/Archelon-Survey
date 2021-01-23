@@ -12,7 +12,9 @@ class PopulatesDb(private var dao: ArchelonDao) {
     private var precipitation: List<String> = listOf("Rain","Hail","Snow")
     private var sky:List<String> = listOf("Clear","Sunny","Cloudy")
     private var wind:List<String> = listOf("Breezy", "Windy")
-    private var user = User(0L, "marino.g83@gmail.com", "Bottoncino1")
+    private var user = User("marino.g83@gmail.com", "Bottoncino1")
+    private var leaders :List<String> = listOf("George Roussos", "Cosmin Stamate")
+    private var observers: List<String> = listOf("Marino Giudice", "Salik Tariq")
 
     fun insertUser() {
         dao.insertUser(user)
@@ -49,6 +51,20 @@ class PopulatesDb(private var dao: ArchelonDao) {
         for (i in 0..(wind.size) - 1) {
             var wind: Wind = Wind(wind.get(i))
             dao.insertWind(wind)
+        }
+    }
+
+    fun insertLeaders() {
+        for (i in 0..(leaders.size) - 1) {
+            var leader: Leaders = Leaders(leaders.get(i))
+            dao.insertLeaders(leader)
+        }
+    }
+
+    fun insertObservers() {
+        for (i in 0..(observers.size) - 1) {
+            var observer: Observers = Observers(observers.get(i))
+            dao.insertObservers(observer)
         }
     }
 

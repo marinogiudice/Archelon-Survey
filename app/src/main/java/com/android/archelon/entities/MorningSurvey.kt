@@ -20,10 +20,10 @@ data class MorningSurvey(
     var Timestamp: Long?,
 
     @ColumnInfo(name = "leader")
-    var Leader: String?,
+    var Leader: Long?,
 
     @ColumnInfo(name = "sec_obs")
-    var Second: String?,
+    var Second: Long?,
 
     @ColumnInfo(name = "sky")
     var Sky: String?,

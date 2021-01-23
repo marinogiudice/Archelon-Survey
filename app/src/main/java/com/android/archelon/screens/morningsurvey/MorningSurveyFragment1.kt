@@ -10,13 +10,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey1Binding
+import com.android.archelon.entities.Beach
+import com.android.archelon.entities.User
 import com.android.archelon.viewmodel.ArchelonViewModel
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
+import kotlinx.android.synthetic.main.fragment_morning_survey1.*
 
 /**
  * The Class MorningSurveyFragment1.
@@ -32,7 +37,7 @@ class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(parent: AdapterView<*>?, view : View?, position: Int, id: Long) {
         var value = parent?.getItemAtPosition(position)
-       
+
 
 
     }
@@ -91,10 +96,10 @@ class MorningSurveyFragment1 : Fragment(), AdapterView.OnItemSelectedListener {
                         addToBackStack("MorninSurvey1")
                     }
                 }else {
-                    Toast.makeText(activity, "Please Set Beach Sector", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Please Set Beach Sector", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(activity, "Please Set Beach", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Please Set Beach", Toast.LENGTH_SHORT).show();
             }
 
             }

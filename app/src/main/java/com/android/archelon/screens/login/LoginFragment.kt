@@ -14,6 +14,7 @@ import com.android.archelon.utils.validate_email
 import com.android.archelon.utils.validate_password
 import com.android.archelon.viewmodel.ArchelonViewModel
 import androidx.lifecycle.Observer
+import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 import com.android.archelon.screens.mainmenu.MainFragment
 import com.android.archelon.viewmodel.ArchelonViewModelFactory
@@ -43,10 +44,10 @@ class LoginFragment : Fragment() {
                     archelonViewModel.login(email, password)
                     archelonViewModel.loggedIn.observe(viewLifecycleOwner, Observer {
                         if (it == false) {
-                            Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
-                                .show()
+                                .show();
                             activity!!.supportFragmentManager.commit {
                                 setReorderingAllowed(true)
                                 replace<MainFragment>(R.id.fragment_container_view)

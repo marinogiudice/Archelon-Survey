@@ -36,7 +36,16 @@ class ArchelonRepository (private val archelonDao: ArchelonDao) {
         return archelonDao.getAllWind()
     }
 
+    fun getAllObservers() : LiveData<List<Observers>>? {
+        return archelonDao.getAllObservers()
+    }
+
+    fun getAllLeaders() : LiveData<List<Leaders>>? {
+        return archelonDao.getAllLeaders()
+    }
+
     fun insertSurvey(survey: MorningSurvey) {
         archelonDao.insertSurvey(survey)
     }
+
 }

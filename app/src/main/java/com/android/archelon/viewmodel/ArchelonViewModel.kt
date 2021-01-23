@@ -24,7 +24,9 @@ class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel
     val allSky=repository.getAllSky()
     val allWind=repository.getAllWind()
     val allPrecipitation = repository.getAllPrecipitation()
-    val morningSurvey : MorningSurvey = MorningSurvey(null,"","",null,"","","","","")
+    val allLeaders = repository.getAllLeaders()
+    val allObservers = repository.getAllObservers()
+    var morningSurvey : MorningSurvey = MorningSurvey(null,"","",null,null,null,"","","")
 
 
     fun insertUser(user: User) = viewModelScope.launch {
@@ -105,12 +107,28 @@ class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel
         }
     }
 
+    fun setLeadersSurvey(par: Any) {
+        if (par is Leaders) {
+            morningSurvey.Leader=par.id
+        }
+    }
+
+    fun setObserversSurvey(par: Any) {
+        if (par is Observers) {
+            morningSurvey.Second=par.id
+        }
+    }
+
     fun getTimeStamp() :String{
         val millisec:Long =System.currentTimeMillis()
         morningSurvey.Timestamp=millisec
         val simpleDateFormat : SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm")
         val cDate =Date(millisec)
         return simpleDateFormat.format(cDate)
+    }
+
+    fun cancel() {
+        this.morningSurvey=MorningSurvey(morningSurvey.User,"","",null,null,null,"","","")
     }
 
     fun submit() {

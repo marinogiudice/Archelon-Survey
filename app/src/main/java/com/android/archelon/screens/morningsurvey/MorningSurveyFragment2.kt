@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
+import com.android.archelon.ArchelonApplication
 import com.android.archelon.MainActivity
 
 import com.android.archelon.R
@@ -48,6 +49,18 @@ class MorningSurveyFragment2 : Fragment() {
         val windSpinner = binding.windSpinner
         val precipitationSpinner = binding.precipitationSpinner
         val skySpinner = binding.skySpinner
+        val leadersSpinner = binding.leadersSpinner
+        val observersSpinner = binding.observersSpinner
+
+        archelonViewModel.allLeaders!!.observe(viewLifecycleOwner, Observer {
+            val leadersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            leadersSpinner.adapter=leadersSpinnerAdapter
+        })
+
+        archelonViewModel.allObservers!!.observe(viewLifecycleOwner, Observer {
+            val observersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            observersSpinner.adapter=observersSpinnerAdapter
+        })
 
         archelonViewModel.allSky!!.observe(viewLifecycleOwner, Observer {
             val skySpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
@@ -74,27 +87,36 @@ class MorningSurveyFragment2 : Fragment() {
          */
 
         binding.ms2Next.setOnClickListener {
-            if(skySpinner.selectedItem!=null) {
-                archelonViewModel.setSkySurvey(skySpinner.selectedItem)
-                if(precipitationSpinner.selectedItem!=null) {
-                    archelonViewModel.setPrecipitationSurvey(precipitationSpinner.selectedItem)
-                    if(windSpinner.selectedItem!=null) {
-                        archelonViewModel.setWindSurvey(windSpinner.selectedItem)
-                        activity!!.supportFragmentManager.commit {
-                            setReorderingAllowed(true)
-                            replace<MorningSurveyFragment3>(R.id.fragment_container_view)
-                            addToBackStack("MorningSurvey2")
+            if(leadersSpinner.selectedItem!=null) {
+                archelonViewModel.setLeadersSurvey(leadersSpinner.selectedItem)
+                if(observersSpinner.selectedItem!=null) {
+                    archelonViewModel.setObserversSurvey(observersSpinner.selectedItem)
+                    if(skySpinner.selectedItem!=null) {
+                        archelonViewModel.setSkySurvey(skySpinner.selectedItem)
+                        if(precipitationSpinner.selectedItem!=null) {
+                            archelonViewModel.setPrecipitationSurvey(precipitationSpinner.selectedItem)
+                            if(windSpinner.selectedItem!=null) {
+                                archelonViewModel.setWindSurvey(windSpinner.selectedItem)
+                                activity!!.supportFragmentManager.commit {
+                                    setReorderingAllowed(true)
+                                    replace<MorningSurveyFragment3>(R.id.fragment_container_view)
+                                    addToBackStack("MorningSurvey2")
+                                }
+                            } else {
+                                Toast.makeText(activity, "Please Set Wind", android.widget.Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(activity, "Please Set Precipitation", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                            Toast.makeText(activity, "Please Set Wind", android.widget.Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Please Set Sky", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(activity, "Please Set Precipitation", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Please Set Leaders", Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(activity, "Please Set Sky", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Please Set Observers", Toast.LENGTH_SHORT).show();
             }
-
         }
 
         /*
@@ -109,7 +131,8 @@ class MorningSurveyFragment2 : Fragment() {
             create a new transaction to walk the User back to the MainMenu screen. */
 
         binding.ms2Cancel.setOnClickListener {
-            activity!!.supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            archelonViewModel.cancel()
+            activity!!.supportFragmentManager.popBackStack("MainMenu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             activity!!.supportFragmentManager.commit() {
                 replace<MainFragment>(R.id.fragment_container_view)
                 addToBackStack("MainMenu")
