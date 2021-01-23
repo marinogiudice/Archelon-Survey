@@ -34,50 +34,51 @@ class LoginFragment : Fragment() {
             inflater,
             R.layout.fragment_login, container, false
         )
+
         binding.loginButton.setOnClickListener {
-            val email:String=binding.emailLoginText.text.toString().trim()
-            val password:String=binding.passwordLoginText.text.toString().trim()
+            val email: String = binding.emailLoginText.text.toString().trim()
+            val password: String = binding.passwordLoginText.text.toString().trim()
             if (validate_email(email)) {
-                if(validate_password(password)) {
-                    archelonViewModel.getUser(email).observe(this, Observer {
-                        if (it == null) {
-                            // Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
+                if (validate_password(password)) {
+                    archelonViewModel.login(email,password)
+                    archelonViewModel.loggedIn.observe(this, Observer {
+                        if (it == false) {
+                            Toast.makeText(activity, "User Not Found", Toast.LENGTH_SHORT).show();
                         } else {
-                            if (password == it[0].Password) {
-                                 Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
-                                  .show();
-                            } else {
-                                //Toast.makeText(activity, "Password Error", Toast.LENGTH_SHORT)
-                                //  .show();
+                            Toast.makeText(activity, "User Found", Toast.LENGTH_SHORT)
+                                .show();
+                            activity!!.supportFragmentManager.commit {
+                                setReorderingAllowed(true)
+                                replace<MainFragment>(R.id.fragment_container_view)
+
                             }
                         }
                     })
+                } else {
+                    binding.passwordLoginText.error = "Invalid Password"
+                }
+            } else {
+                binding.emailLoginText.error = "Invalid Email"
+            }
+            //Toast.makeText(activity, "Password Error", Toast.LENGTH_SHORT)
+            //  .show();
 
-                    /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+
+            /*  The following code is used to handle the navigation between fragments using the support fragment manager.
 
            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
            of the supportFragmentManager.
            The transaction replaces the current fragment with MainFragment, in
            fragment_container_view, of MainActivity walking the User to the "Main Menu" screen.
            The transaction is added to the BackStack. */
-                    activity!!.supportFragmentManager.commit {
-                        setReorderingAllowed(true)
-                        replace<MainFragment>(R.id.fragment_container_view)
-
-                    }
-                } else {
-                    binding.passwordLoginText.error="Invalid Password"
-                }
-            } else {
-                binding.emailLoginText.error="Invalid Email"
-            }
-
-
         }
         return binding.root
     }
+}
 
 
-    }
+
+
+
 
 

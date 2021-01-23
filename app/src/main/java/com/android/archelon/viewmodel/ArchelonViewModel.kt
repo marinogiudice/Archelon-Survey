@@ -11,6 +11,13 @@ import kotlinx.coroutines.launch
 
 class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel(){
 
+    val loggedIn = MutableLiveData<Boolean>(false)
+
+
+    fun insertUser(user: User) = viewModelScope.launch {
+        repository.insertUser(user)
+    }
+
     fun getUser(email:String) : LiveData<List<User>> {
         return repository.getUser(email)
     }
@@ -35,6 +42,13 @@ class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel
         return repository.getAllWind()
     }
 
+    fun login(email:String, password:String) {
+        val user   = getUser(email).value!!.get(0)
+
+    }
+
 
 
 }
+
+
