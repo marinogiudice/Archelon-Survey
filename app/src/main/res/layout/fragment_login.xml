@@ -30,11 +30,21 @@
                 app:srcCompat="@drawable/logo_archelon2" />
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Archelon"
+                android:textAlignment="center"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="@dimen/text_size_under_logo_text" />
+
+            <TextView
                 android:id="@+id/under_logo_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/under_logo"
+                android:text="@string/under_logo2"
                 android:textAlignment="center"
+                android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/text_size_under_logo_text" />
         </LinearLayout>
 

@@ -5,4 +5,5 @@
     <dimen name="morning_survey_title_text">20sp</dimen>
     <dimen name="main_frag_title_text">20sp</dimen>
     <dimen name="beach_view">15sp</dimen>
+    <dimen name="fragment_labels_text">18sp</dimen>
 </resources>

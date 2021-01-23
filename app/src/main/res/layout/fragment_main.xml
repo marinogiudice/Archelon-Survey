@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/main_frag_title"
+                android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/main_frag_title_text" />
         </LinearLayout>
 

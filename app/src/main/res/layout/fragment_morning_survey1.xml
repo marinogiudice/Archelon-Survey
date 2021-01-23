@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="40sp">
+            android:layout_margin="30sp">
 
             <TextView
                 android:id="@+id/end_of_survey_title"
@@ -22,8 +22,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
                 android:layout_weight="1"
+                android:padding="2sp"
                 android:text="@string/morning_survey_1_title"
                 android:textAlignment="center"
+                android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/morning_survey_title_text" />
         </LinearLayout>
 
@@ -38,40 +40,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5sp"
+                android:elegantTextHeight="true"
+                android:padding="2sp"
                 android:text="@string/beach_hint"
                 android:textAlignment="center"
-                android:textSize="@dimen/beach_view" />
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="@dimen/fragment_labels_text" />
 
             <Spinner
                 android:id="@+id/beach_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp" />
+                android:layout_marginBottom="10sp"
+                android:spinnerMode="dialog"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/sector_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5sp"
+                android:elegantTextHeight="true"
+                android:padding="2sp"
                 android:text="@string/beach_sector_hint"
                 android:textAlignment="center"
-                android:textSize="@dimen/beach_view" />
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="@dimen/fragment_labels_text" />
 
             <Spinner
                 android:id="@+id/beach_sector_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/time_stamp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/timestamp" />
+                android:layout_margin="10sp"
+                android:elegantTextHeight="true"
+                android:text="@string/timestamp"
+                android:textAlignment="center"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="@dimen/fragment_labels_text" />
 
             <TextView
                 android:id="@+id/time_stamp_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="2sp"
+                android:textAlignment="center"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

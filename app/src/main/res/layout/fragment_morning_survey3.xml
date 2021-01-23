@@ -24,6 +24,7 @@
                 android:layout_weight="1"
                 android:text="@string/end_survey_top"
                 android:textAlignment="center"
+                android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/morning_survey_title_text" />
         </LinearLayout>
 

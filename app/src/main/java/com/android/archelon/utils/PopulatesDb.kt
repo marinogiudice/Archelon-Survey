@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers.IO
 
 class PopulatesDb(private var dao: ArchelonDao) {
 
-    private var beaches :List<String> = listOf("campolongo1","campolongo2","campolongo3")
+    private var beaches :List<String> = listOf("Mavrovouni","Selinitsa","Vathi","Valtaki")
     private var sectors :List<String> = listOf("North","South","East","West")
     private var precipitation: List<String> = listOf("Rain","Hail","Snow")
     private var sky:List<String> = listOf("Clear","Sunny","Cloudy")
