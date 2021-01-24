@@ -98,6 +98,7 @@ class ArchelonViewModel (private val repository: ArchelonRepository) : ViewModel
 
     fun cancel() {
         this.morningSurvey=MorningSurvey(morningSurvey.userId,"","",null,null,null,"","","")
+
     }
 
     fun submit() {

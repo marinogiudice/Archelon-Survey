@@ -10,10 +10,10 @@ class PopulatesDb(private var dao: ArchelonDao) {
 
     private var beaches :List<String> = listOf("Mavrovouni","Selinitsa","Vathi","Valtaki")
     private var sectors :List<String> = listOf("North","South","East","West")
-    private var precipitation: List<String> = listOf("Rain","Hail","Snow")
+    private var precipitation: List<String> = listOf("None","Rain","Hail","Snow")
     private var sky:List<String> = listOf("Clear","Sunny","Cloudy")
-    private var wind:List<String> = listOf("Breezy", "Windy")
-    private var user = User("marino.g83@gmail.com", "Bottoncino1")
+    private var wind:List<String> = listOf("None","Breezy", "Windy")
+    private var user = User("volunteer1@archelon.com", "Volunteer1")
     private var leaders :List<String> = listOf("George Roussos", "Cosmin Stamate")
     private var observers: List<String> = listOf("Marino Giudice", "Salik Tariq")
 

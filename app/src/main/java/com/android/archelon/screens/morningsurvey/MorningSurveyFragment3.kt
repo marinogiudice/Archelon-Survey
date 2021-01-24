@@ -23,6 +23,8 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
  */
 
 class MorningSurveyFragment3 : Fragment() {
+    //instantiate a ViewModel if is not been created yet.
+    //use the existing one otherwise
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
     }
@@ -43,18 +45,17 @@ class MorningSurveyFragment3 : Fragment() {
             R.layout.fragment_morning_survey3, container, false
         )
 
-        /*  The following code is used to handle the navigation between fragments using the support fragment manager
-
-            an onClick listener is set on the previous and the cancel button.
-            The listener of the previous button calls the popBackStack method of the supportFragmentManager to
-            walk the user to the previous screen.  */
-
+        /*
+        When the User press the previous button The listener of the previous button calls the popBackStack method of the supportFragmentManager to
+         walk the user to the previous screen, eliminating the last transaction from the backStack.  */
         binding.ms3PreviousButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
-        /*  The listener of the cancel button calls the popBackStack method of the support screen to empty the backStack and
-            create a new transaction to walk the User back to the MainMenu screen. */
+
+        /*  The listener of the cancel button calls the popBackStack method of the supportFragmentManager  to empty the backStack and
+            create a new transaction to walk the User back to the MainMenu screen.
+            the new transaction is added to the backStack*/
 
         binding.ms3CancelButton.setOnClickListener {
             archelonViewModel.cancel()
@@ -67,6 +68,13 @@ class MorningSurveyFragment3 : Fragment() {
                 addToBackStack("MainMenu")
             }
         }
+
+        /*
+            When the user press the end survey button the method submit() of the viewModel is called
+            followed to the cancel() method of the ViewModel.
+            The user is then walked to the main menu by the SupportFragmentManager
+            The current fragment is replaced by the MainFragment
+         */
 
         binding.endSurveyBtn.setOnClickListener {
             archelonViewModel.submit()

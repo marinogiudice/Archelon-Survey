@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.*
 import androidx.lifecycle.Observer
 import com.android.archelon.MainActivity
-
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMorningSurvey2Binding
 import com.android.archelon.screens.mainmenu.MainFragment
@@ -20,12 +19,14 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
 /**
  * The MorningSurveyFragment2 class.
  * Displays the screen where the User insert the Observers and The Weather
- * Conditions at the begin of The Survey.
+ * Conditions at the "step2" of The Survey.
  * Uses DataBinding
  * Extends the Fragment class.
  */
 
 class MorningSurveyFragment2 : Fragment() {
+    //instantiate a ViewModel if is not been created yet.
+    //use the existing one otherwise
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
     }
@@ -45,46 +46,51 @@ class MorningSurveyFragment2 : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentMorningSurvey2Binding>(inflater,
             R.layout.fragment_morning_survey2,container,false)
-        val windSpinner = binding.windSpinner
-        val precipitationSpinner = binding.precipitationSpinner
-        val skySpinner = binding.skySpinner
-        val leadersSpinner = binding.leadersSpinner
-        val observersSpinner = binding.observersSpinner
 
+        //some variables are declared to holds references to the spinners
+        var windSpinner = binding.windSpinner
+        var precipitationSpinner = binding.precipitationSpinner
+        var skySpinner = binding.skySpinner
+        var leadersSpinner = binding.leadersSpinner
+        var observersSpinner = binding.observersSpinner
+
+        //The spinners are populated as required picking the data observing the livedata of the ViewModel
         archelonViewModel.allLeaders!!.observe(viewLifecycleOwner, Observer {
-            val leadersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var leadersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             leadersSpinner.adapter=leadersSpinnerAdapter
+            leadersSpinner.prompt="Select Survey Leader"
         })
 
         archelonViewModel.allObservers!!.observe(viewLifecycleOwner, Observer {
-            val observersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var observersSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             observersSpinner.adapter=observersSpinnerAdapter
+            observersSpinner.prompt="Select 2nd Observer"
         })
 
         archelonViewModel.allSky!!.observe(viewLifecycleOwner, Observer {
-            val skySpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var skySpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             skySpinner.adapter=skySpinnerAdapter
+            skySpinner.prompt="Select Sky Condition"
         })
 
         archelonViewModel.allPrecipitation!!.observe(viewLifecycleOwner, Observer {
-            val precipitationSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var precipitationSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             precipitationSpinner.adapter=precipitationSpinnerAdapter
+            precipitationSpinner.prompt="Select Weather Precipitation"
         })
 
         archelonViewModel.allWind!!.observe(viewLifecycleOwner, Observer {
-            val windSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var windSpinnerAdapter= ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             windSpinner.adapter=windSpinnerAdapter
+            windSpinner.prompt="Select Wind Intensity"
         })
 
-        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+        /* When the user press the next button
+           The values of the spinners are checked to avoid null references.
+          if the values are not null the values are passed to the ViewModel
+          to populate the morningSurvey Object
 
-            an onClick listener is set on the previous and the next button.
-            The listener of the next button initiate and commit a new transaction "replace", by the method commit
-            of the supportFragmentManager. The transaction replaces the current fragment with MorningSurveyFragment3, in
-            fragment_container_view, of MainActivity walking the User to the "Submit Survey Screen".
-            The transaction is added to the BackStack.
-         */
-
+        */
         binding.ms2Next.setOnClickListener {
             if(leadersSpinner.selectedItem!=null) {
                 archelonViewModel.setLeadersSurvey(leadersSpinner.selectedItem)
@@ -96,6 +102,8 @@ class MorningSurveyFragment2 : Fragment() {
                             archelonViewModel.setPrecipitationSurvey(precipitationSpinner.selectedItem)
                             if(windSpinner.selectedItem!=null) {
                                 archelonViewModel.setWindSurvey(windSpinner.selectedItem)
+                                //if all the checks are succesfull a new fragmentManager transanction is istantiate and execute by commit.
+                                // The current fragment is replaced by MorningSurveyFragment3, the transaction is added to the backstack.
                                 requireActivity().supportFragmentManager.commit {
                                     setReorderingAllowed(true)
                                     replace<MorningSurveyFragment3>(R.id.fragment_container_view)
@@ -120,13 +128,13 @@ class MorningSurveyFragment2 : Fragment() {
 
         /*
         The listener of the previous button calls the popBackStack method of the supportFragmentManager to
-         walk the user to the previous screen, eliminating one transaction from the backStack.  */
+         walk the user to the previous screen, eliminating the last transaction from the backStack.  */
 
         binding.ms2PreviousButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
-        /*  The listener of the cancel button calls the popBackStack method of the support screen to empty the backStack and
+        /*  The listener of the cancel button calls the popBackStack method of the supportFragmentManager  to empty the backStack and
             create a new transaction to walk the User back to the MainMenu screen. */
 
         binding.ms2Cancel.setOnClickListener {

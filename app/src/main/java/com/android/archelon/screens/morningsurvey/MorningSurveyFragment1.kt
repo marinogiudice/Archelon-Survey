@@ -23,9 +23,12 @@ import com.android.archelon.viewmodel.ArchelonViewModelFactory
  * Displays the screen "Morning Survey" the first step of "Start New Morning Survey"
  * Uses DataBinding
  * Extends the Fragment Class
+ * Holds The view Elements that build the Morning Survey "step1" Screen
  */
 
 class MorningSurveyFragment1 : Fragment() {
+    //instantiate a ViewModel if is not been created yet.
+    //use the existing one otherwise
     private val archelonViewModel: ArchelonViewModel by activityViewModels {
         ArchelonViewModelFactory((activity as MainActivity).repository)
     }
@@ -44,41 +47,46 @@ class MorningSurveyFragment1 : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentMorningSurvey1Binding>(inflater,
             R.layout.fragment_morning_survey1,container,false)
 
-        /*  The following code is used to handle the navigation between fragments using the support fragment manager.
+        //some variables are declared to holds references to the spinners
+        var beachSpinner=binding.beachSpinner
+        var sectorSpinner=binding.beachSectorSpinner
+        var timeStampText=binding.timeStampView
+        //the timsestamp is obtained from the ViewModel and assigned to the holder timeStampView TextView
+        binding.timeStampView.text=archelonViewModel.getTimeStamp()
 
-            an onClick listener is set on the previous and the next button.
-            The listener of the startSurveyButton button initiate and commit a new transaction "replace", by the method commit
-            of the supportFragmentManager.
-            The transaction replaces the current fragment with MorningSurveyFragment2, in
-            fragment_container_view, of MainActivity walking the User to the second screen of "Morning Survey".
-            The transaction is added to the BackStack. */
-        val beachSpinner=binding.beachSpinner
-        val sectorSpinner=binding.beachSectorSpinner
-        val timeStampText=binding.timeStampView
-        timeStampText.text=archelonViewModel.getTimeStamp()
-
+        //The spinners are populated as required picking the data observing the livedata of the ViewModel
         archelonViewModel.beaches!!.observe(viewLifecycleOwner,Observer {
-            val beachSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var beachSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             beachSpinner.adapter=beachSpinnerAdapter
             beachSpinner.prompt="Select Beach"
         })
 
 
         archelonViewModel.allBeachSector!!.observe(viewLifecycleOwner,Observer {
-            val sectorSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
+            var sectorSpinnerAdapter=ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item,it)
             sectorSpinner.adapter=sectorSpinnerAdapter
+            sectorSpinner.prompt="Select Beach Sector"
         })
 
+        /*The values of the spinners are checked to avoid null references.
+          if the values are not null the values are passed to the ViewModel
+          to populate the morningSurvey Object
+
+        */
         binding.startNewSurveyButton.setOnClickListener {
             if(beachSpinner.selectedItem!=null) {
                 archelonViewModel.setBeachSurvey(beachSpinner.selectedItem)
                 if(sectorSpinner.selectedItem!=null) {
                     archelonViewModel.setSectorSurvey(sectorSpinner.selectedItem)
+                    //if all the checks are succesfull a new fragmentManager transanction is istantiate and execute by commit.
+                    // The current fragment is replaced by MorningSurveyFragment2, the transaction is added to the backstack.
                     requireActivity().supportFragmentManager.commit {
                         setReorderingAllowed(true)
                         replace<MorningSurveyFragment2>(R.id.fragment_container_view)
                         addToBackStack("MorninSurvey1")
                     }
+                    // if the data in the spinners doesn't pass the validation
+                    //some messages are displayed and the transaction is not executed
                 }else {
                     Toast.makeText(activity, "Please Set Beach Sector", Toast.LENGTH_SHORT).show();
                 }
@@ -87,6 +95,8 @@ class MorningSurveyFragment1 : Fragment() {
             }
 
             }
+        //if the user press the previous button the last transaction is popped from the backstack of the FragmentManager
+        //and the user is walked to the previous screen
         binding.previousButton.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }

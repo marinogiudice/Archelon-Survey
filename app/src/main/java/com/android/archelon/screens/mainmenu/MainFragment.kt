@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-
 import com.android.archelon.R
 import com.android.archelon.databinding.FragmentMainBinding
 import com.android.archelon.screens.morningsurvey.MorningSurveyFragment1

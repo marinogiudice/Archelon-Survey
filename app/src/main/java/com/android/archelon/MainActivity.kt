@@ -14,16 +14,28 @@ import kotlinx.coroutines.SupervisorJob
 /**
 * The MainActivity class.
 * Main Instance of The application
+ * A Kind of Big Container that:
  * Contains the Fragments UI Elements
+ * Contains public values for database and repository
+ * that can be easily accessed from the ViewModel of the fragments when needed.
+ * Contains a public value for the coroutineScope used in the database creation process.
+ * Creates and holds a private ViewModel Instance that will be shared in between
+ * The View fragments that need it.
+ *
 */
 
 class MainActivity : AppCompatActivity() {
+    //instantiate the applicationScope for the coroutines
     val applicationScope = CoroutineScope(SupervisorJob())
+    //instantiate the database by lazy
     val database by lazy { ArchelonDatabase.getDatabase(this,applicationScope)}
+    //instantiate the repository by lazy
     val repository by lazy { ArchelonRepository(database.archelonDao()) }
+    //instantiate the ViewModel
     private val archelonViewModel: ArchelonViewModel by viewModels {
         ArchelonViewModelFactory(repository)
     }
+
 
     /**
      *  The function onCreate is called when an instance of
