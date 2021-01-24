@@ -4,6 +4,15 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * MorningSurvey Entity data class
+ * Defines The Structure of The Room DB table "morning_survey_table"
+ * msId as PrimaryKey
+ * Contains data relative to the values inserted by the User
+ * The columns (except msId and timestamp) all contains references to rows of
+ * the other tables of the DB
+ */
+
 @Entity(tableName = "morning_survey_table")
 data class MorningSurvey(
 
