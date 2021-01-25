@@ -17,9 +17,8 @@ import java.io.IOException
 
 
 /**
- * This is not meant to be a full set of tests. For simplicity, most of your samples do not
- * include tests. However, when building the Room, it is helpful to make sure it works before
- * adding the UI.
+ * The Class Defines JUnit Test for the DataBase.
+ * An In Memory DB is created to run the tests
  */
 
 @RunWith(AndroidJUnit4::class)
@@ -27,14 +26,11 @@ class ArchelonDatabaseTest {
 
     private lateinit var archelonDao: ArchelonDao
     private lateinit var db: ArchelonDatabase
-
+    //creates the in memory db
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        // Using an in-memory database because the information stored here disappears when the
-        // process is killed.
         db = Room.inMemoryDatabaseBuilder(context, ArchelonDatabase::class.java)
-            // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
         archelonDao = db.archelonDao()
@@ -45,7 +41,7 @@ class ArchelonDatabaseTest {
     fun closeDb() {
         db.close()
     }
-
+    //Tests that an User object is inserted in the DB correctly
     @Test
     @Throws(Exception::class)
     fun insertAndGetUser() {
@@ -55,6 +51,7 @@ class ArchelonDatabaseTest {
         assertThat(user2.get(0),equalTo(user))
     }
 
+    //Tests that a Beach object is inserted in the DB correctly
     fun insertAndGetBeach() {
         val beach = Beach("Vathi")
         archelonDao.insertBeach(beach)
