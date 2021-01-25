@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Layout file of MorningSurveyFragment1-->
+<!-- layout tag to enable data binding -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- The View is subdivided in Sectors thanks to LinearLayout tags -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="30sp">
-
+            <!-- The TextView Containing the Screen title -->
             <TextView
                 android:id="@+id/end_of_survey_title"
                 android:layout_width="0dp"
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
-
+            <!-- The Beach Spinner title label -->
             <TextView
                 android:id="@+id/beach_view"
                 android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for user selection of the beach -->
             <Spinner
                 android:id="@+id/beach_spinner"
                 android:layout_width="match_parent"
@@ -54,7 +55,7 @@
                 android:layout_marginBottom="10sp"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
+            <!-- The Beach Sector Spinner title label -->
             <TextView
                 android:id="@+id/sector_view"
                 android:layout_width="match_parent"
@@ -66,14 +67,14 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the beach sector -->
             <Spinner
                 android:id="@+id/beach_sector_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
+            <!-- The TextView Containing the Label -->
             <TextView
                 android:id="@+id/time_stamp"
                 android:layout_width="match_parent"
@@ -84,7 +85,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- The TextView Containing the Timestamp value -->
             <TextView
                 android:id="@+id/time_stamp_view"
                 android:layout_width="match_parent"
@@ -102,13 +103,13 @@
             android:layout_gravity="start"
             android:layout_margin="30sp"
             android:orientation="vertical">
-
+            <!-- The "Start New Survey" Button -->
             <Button
                 android:id="@+id/start_new_survey_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_new_survey_button_btn" />
-
+            <!-- The Previous Button -->
             <Button
                 android:id="@+id/previous_button"
                 android:layout_width="wrap_content"

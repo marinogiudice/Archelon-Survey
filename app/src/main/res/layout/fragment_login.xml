@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Login Fragment Layout file-->
+<!-- layout tag to enable data binding -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- The View is subdivided in Sectors thanks to LinearLayout tags -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_margin="30sp"
             android:orientation="vertical">
-
+        <!-- The Logo Image -->
             <ImageView
                 android:id="@+id/logo_image"
                 android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
                 android:layout_margin="20sp"
                 android:contentDescription="Archelon Logo"
                 app:srcCompat="@drawable/logo_archelon2" />
-
+            <!-- Defines two TextView to contain the writing under the logo -->
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
@@ -55,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
             android:orientation="vertical">
-
+            <!-- Defines two EditText for user input. One for the username
+             and one for the password -->
             <EditText
                 android:id="@+id/email_login_text"
                 android:layout_width="wrap_content"
@@ -73,7 +75,7 @@
                 android:hint="@string/password_hint"
                 android:inputType="textPassword" />
         </LinearLayout>
-
+        <!-- The Login Button -->
         <Button
             android:id="@+id/login_button"
             android:layout_width="wrap_content"

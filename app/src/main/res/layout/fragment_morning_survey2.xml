@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- MorningSurveyFragment2 Layout file -->
+<!-- layout tag to enable data binding -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- The View is subdivided in Sectors thanks to LinearLayout tags -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
-
+            <!-- The Leader Spinner title label -->
             <TextView
                 android:id="@+id/leaders_text_view"
                 android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the leader -->
             <Spinner
                 android:id="@+id/leaders_spinner"
                 android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                 android:layoutMode="opticalBounds"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
+            <!-- Observers Spinner  for the user selection of the second observer -->
             <TextView
                 android:id="@+id/observer_text_view"
                 android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the second observer -->
             <Spinner
                 android:id="@+id/observers_spinner"
                 android:layout_width="match_parent"
@@ -101,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
-
+            <!-- Sky Spinner Label -->
             <TextView
                 android:id="@+id/sky_text_view"
                 android:layout_width="match_parent"
@@ -112,7 +113,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the sky condition -->
             <Spinner
                 android:id="@+id/sky_spinner"
                 android:layout_width="match_parent"
@@ -122,7 +123,7 @@
                 android:layoutMode="opticalBounds"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
+            <!-- Precipitation Spinner label -->
             <TextView
                 android:id="@+id/precipitation_text_view"
                 android:layout_width="match_parent"
@@ -133,7 +134,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the Precipitations -->
             <Spinner
                 android:id="@+id/precipitation_spinner"
                 android:layout_width="match_parent"
@@ -142,7 +143,7 @@
                 android:layoutMode="opticalBounds"
                 android:spinnerMode="dialog"
                 android:textAlignment="center" />
-
+            <!-- Wind Spinner label -->
             <TextView
                 android:id="@+id/wind_text_view"
                 android:layout_width="match_parent"
@@ -153,7 +154,7 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/primary_text_light"
                 android:textSize="@dimen/fragment_labels_text" />
-
+            <!-- Spinner for the user selection of the wind intensity -->
             <Spinner
                 android:id="@+id/wind_spinner"
                 android:layout_width="match_parent"
@@ -170,21 +171,21 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30sp"
             android:orientation="horizontal">
-
+            <!-- Previous Button -->
             <Button
                 android:id="@+id/ms2_previous_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="@string/previous_btn" />
-
+            <!-- Cancel Button -->
             <Button
                 android:id="@+id/ms2_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
                 android:text="@string/cancel_survey_btn" />
-
+            <!-- Next Button -->
             <Button
                 android:id="@+id/ms2_next"
                 android:layout_width="match_parent"

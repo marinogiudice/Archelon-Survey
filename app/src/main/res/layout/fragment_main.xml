@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Layout file of fragment_main-->
+<!-- layout tag to enable data binding -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- The View is subdivided in Sectors thanks to LinearLayout tags -->
     <LinearLayout
         android:id="@+id/main_parent"
         android:layout_width="wrap_content"
@@ -18,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="30sp">
-
+            <!-- The TextView Containing the Screen title -->
             <TextView
                 android:id="@+id/main_title_text"
                 android:layout_width="0dp"
@@ -33,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <!-- The Buttons of the main menu. -->
             <Button
                 android:id="@+id/start_survey_button"
                 android:layout_width="match_parent"

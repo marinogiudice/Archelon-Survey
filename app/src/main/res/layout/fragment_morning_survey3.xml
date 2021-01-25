@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- MorningSurveyFragment3 Layout file -->
+<!-- layout tag to enable data binding -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".screens.morningsurvey.MorningSurveyFragment3">
+    <!-- The View is subdivided in Sectors thanks to LinearLayout tags -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="40sp">
-
+            <!-- The TextView Containing the Screen title -->
             <TextView
                 android:id="@+id/end_of_survey_title"
                 android:layout_width="0dp"
@@ -32,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="30sp">
-
+            <!-- End of Survey Button -->
             <Button
                 android:id="@+id/end_survey_btn"
                 android:layout_width="0dp"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50sp"
             android:orientation="horizontal">
-
+            <!-- Previous Button -->
             <Button
                 android:id="@+id/ms3_previous_button"
                 android:layout_width="wrap_content"
@@ -53,7 +55,7 @@
                 android:layout_margin="10sp"
                 android:layout_weight="1"
                 android:text="@string/previous_btn" />
-
+            <!-- Cancel Button -->
             <Button
                 android:id="@+id/ms3_cancel_button"
                 android:layout_width="wrap_content"
